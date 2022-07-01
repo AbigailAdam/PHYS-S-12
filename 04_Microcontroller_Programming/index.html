@@ -5,6 +5,11 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="../style.css" rel="stylesheet">
 
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
 <body>
 
 
@@ -15,6 +20,59 @@
   ### Week 4: Microcontroller Programming
 
   Here is an image: 
+
+  <pre><code class="language-arduino">
+/*  Code to run motor in one direction based on potentiometer reading, if a button has been pressed to provide power to the motor.
+ *  Motor driver speed control on pin 3 (direction LOW by default)
+ *  Potentiometer wired into A0, A2, and A4 on Arduino Uno
+ */
+
+ // Setting pin numbers:
+const int buttonPin = 2;     // the number of the pushbutton pin
+const int A1A = 3;  // define pin 3 for A-1A (PWM Speed)
+const int A1B = 4;  // define pin 4 for A-1B (direction)
+
+// Initializing variables:
+int buttonState = 0;         // variable for reading the pushbutton 
+
+void setup() {
+
+  // Initialize the pushbutton pin as an input:
+  pinMode(buttonPin, INPUT_PULLUP);
+
+  // Initialize pins to motor control as output:
+  pinMode(A1A, OUTPUT);  
+  pinMode(A1B, OUTPUT);
+
+  analogWrite(A1A, 0);   // start with the motors off 
+  digitalWrite(A1B, LOW); // Initialize direction
+
+  // Initialize pins for potentiometer: 
+  pinMode(A0, OUTPUT);  // this will be GND for the potentiometer
+  pinMode(A4, OUTPUT);  // this will be 3.3V for the pot
+
+  digitalWrite(A0, LOW);  
+  digitalWrite(A4, HIGH); 
+  
+}
+
+void loop() {
+  // Read the state of the pushbutton value:
+  buttonState = digitalRead(buttonPin);
+
+  // If statement making it so that the motor and potentiometer can't turn on without te button being pressed 
+  if (buttonState == LOW) { 
+    int pot_value = analogRead(A2);   // pot wiper is on A2
+    int motor_speed = map(pot_value, 100, 1023, 255, 100); // map motor_level to pot_value so that zero corresponds to lowest speed
+    analogWrite(A1A, motor_speed); 
+    delay(1);
+  } else {
+      analogWrite(A1A, 0); // turns off the motor while the button is unpressed
+  }
+  
+ 
+}
+</code></pre> 
 
   ![image of hydrangea](./Hydrangea-PNG-Transparent-Picture.png)
 
