@@ -60,7 +60,7 @@ void loop() {
   // Read the state of the pushbutton value:
   buttonState = digitalRead(buttonPin);
 
-  // If statement making it so that the motor and potentiometer can't turn on without te button being pressed 
+  // If statement making it so that the motor and potentiometer can't turn on without the button being pressed 
   if (buttonState == LOW) { 
     int pot_value = analogRead(A2);   // pot wiper is on A2
     int motor_speed = map(pot_value, 100, 1023, 255, 100); // map motor_level to pot_value so that zero corresponds to lowest speed
