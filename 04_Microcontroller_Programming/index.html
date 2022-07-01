@@ -17,9 +17,29 @@
 
 
 
-  ### Week 4: Microcontroller Programming
+# Week 4: Microcontroller Programming
 
-  Here is an image: 
+##Goal: 
+
+To write code that would accomplish the following: 
+- turn on the system's motion with a button 
+- control the speed of the system with a potentiometer
+ 
+##Circuit: 
+
+I got inspiration from the potentiometer example from class and the tutorial from this [website](https://roboticsbackend.com/arduino-led-push-button-potentiometer/). Note that I made some changes because their version was for controlling an LED, and I was controlling the motion of my kinetic sculpture. 
+
+Here is my schematic: 
+
+<img src="IMG_3259.jpeg" alt="schematic" style="width:397.2px;height:250px;">
+
+Here are pictures of the circuit from a variety of angles: 
+
+##Code: 
+
+My code is made out of the potentiometer code from the class website, the button code, and contains modifications I made to link the two together. 
+
+Here is my code, in its entirety:
 
   <pre><code class="language-arduino">
 /*  Code to run motor in one direction based on potentiometer reading, if a button has been pressed to provide power to the motor.
