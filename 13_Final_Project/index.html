@@ -24,18 +24,37 @@
 
   ![Sketch of new idea](./NewIdeaDrawing.jpg)
 
-   It would utilize an Arduino and breadboarding, as well as code likely executed in MatLab. This project is basically a more complex version of a more rudimentary project I created last year that follows the same concept (a musical instrument operated based on the varied detection of light/heat from disparate sources). 
+   It would utilize an Arduino and breadboarding, as well as code likely executed in the Arduino IDE (instead of matlab, as we've been using that method for coding in class). This project is basically a more complex version of a more rudimentary project I created last year that follows the same concept (a musical instrument operated based on the varied detection of light/heat from disparate sources). 
+
+   *NEW* Upon further investigation, I've decided to switch to a pressure operated system. The idea of using brightness or heat just present a whole host of difficulties, such as ambient heat and light, and the difficulty that playing any actual music would require keeping the fingers above the sensors and thus they would be perpetually activated. Pressure avoids many of these issues as the user would have to come into contact with the instrument to make noise, and would eliminate the issue of ambient signals confusing the device. The design would stay much the same despite this change. 
 
   Here is an image of the (very rudimentary) version I created for that project: 
  
 
   ![image of initial version](./CompSciFST2021.jpg)
 
-  ## 2. ChoreBot (not the final name)
 
-  A robot equipped with a camera that would scan around the room in which it is placed and recognize undone chores, such as unmade beds, clothes on the floor, etc. This robot would then send out messages over wifi reminding the room's occupant to do their chores. 
+Bill of Materials: 
+- 3D printer filament (as I still intend on printing the casing for the ciruitry, and the arrows to place on the buttons)
+- Pressure sensors - I'm not sure about what type we have, but it must have the ability to take in 8 different inputs 
+- Many wires
+- Wire strippers
+- Resistors 
+- 2 seven segment displays - or a 14 segment display 
+- 2 Buttons
+- A speaker/piezo buzzer 
 
-  The inspiration for this came from me constantly forgetting to do my chores and wishing I had a apparatus to remind me when I forget. 
+Timeline: 
+- Assemble smaller versions of the circuit and write sections of code for proof of concept 
+  - make use of existing pressure sensor code and modify it, also begin with the small breadboard before scaling up 
+- Write overall psuedocode, draw circuit diagram 
+- Conbine into one large circuit, test it. 
+- Write the code for the program, utilizing classes for the pressure sensors and integrating the piezo buzzer/speaker I choose
+- Prototype the casing 
+- Print the casing and different covers for the buttons 
+- Assemble it all
+  - if there is enough time and the first stages of the plan go smoothly, maybe make a vinyl print for the circuit 
+- Prepare for final presentations at the project fair!
 
   Click [here](../index.html) to go back to the home page.
 
