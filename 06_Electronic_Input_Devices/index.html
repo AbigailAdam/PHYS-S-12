@@ -71,8 +71,88 @@ Here is all the code used for this sensor:
         }
 </code></pre> 
 
+####Relating Distances to Values Recieved from Sensor: 
 
-##B. Hand-Crafter Sensor: 
+There were new ranges when I set up the circuit again (despite it being the exact same circuit- likely it is due to the changes in environment), so here they are to put the results of the calibration is consistent. 
+
+<img src="IRSensorCalibratingRange.JPEG" alt="normal graph" style="width:569px;height:353px;">
+
+Min = 9
+Max = 136
+
+Distance-Sensor Values: 
+<table>
+  <tr>
+    <th>Distance (cm)</th>
+    <th>Sensor Value</th>
+  </tr>
+  <tr>
+    <td>>=30</td>
+    <td><=25</td>
+  </tr>
+  <tr>
+    <td>25</td>
+    <td>25-30</td>
+  </tr>
+  <tr>
+    <td>20</td>
+    <td>30-40</td>
+  </tr>
+  <tr>
+    <td>15</td>
+    <td>40-55</td>
+  </tr>
+   <tr>
+    <td>10</td>
+    <td>55-75</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>75-100</td>
+  </tr>
+  <tr>
+    <td>0</td>
+    <td>100-140</td>
+  </tr>
+</table> 
+
+
+Code (to output as distances as opposed to random numbers): 
+<pre><code class="language-arduino">
+void setup() {
+  Serial.begin(9600); 
+  pinMode(A0, INPUT);                            
+}
+void loop() {
+ int a=analogRead(A0);
+    if (a <= 25 ){
+    Serial.println("No obstacle");
+    }
+    else if (25<a<30) {
+    Serial.println("~25 cm");
+    }
+     else if (30<a<40) {
+    Serial.println("~20 cm");
+    }
+     else if (40<a<55) {
+    Serial.println("~15 cm");
+    }
+     else if (55<a<75) {
+    Serial.println("~10 cm");
+    }
+     else if (75<a<100) {
+    Serial.println("~5 cm");
+    }
+     else if (100<a<140) {
+    Serial.println("0 cm");
+    }
+
+  delay(100);                                     
+}
+
+</code></pre> 
+
+##B. Hand-Crafted Sensor: 
 
 ###Capacitative Sensor: 
 
