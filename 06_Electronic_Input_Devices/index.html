@@ -5,6 +5,11 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="../style.css" rel="stylesheet">
 
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
 <body>
 
 
@@ -51,6 +56,22 @@ Max = 18
 
 **Didn't have enough to do this part, will complete in lab 
 
+####Code: 
+
+Here is all the code used for this sensor: 
+
+<pre><code class="language-arduino">
+          void setup() {
+            Serial.begin(9600); 
+            pinMode(A0, INPUT); // set A0 as the input pin                           
+          }
+
+        void loop() {
+          int a=analogRead(A0); // read the values from the IR reciever
+          Serial.println(a); // send them to the serial monitor
+          delay(100); // wait in between printings                                      
+        }
+
 
 ##B. Hand-Crafter Sensor: 
 
@@ -60,8 +81,8 @@ I used 10K resistors to build the following circuit:
 
 <img src="IMG_3270.jpeg" alt="circuitdiagram" style="width:541x;height:530.5px;">
 
-<img src="IMG_5989.JPG" alt="circuit" style="width:1997px;height:1507.5px;">
-<img src="IMG_5988.JPG" alt="circuit" style="width:1501.5px;height:1669px;">
+<img src="IMG_5989.JPG" alt="circuit" style="width:265px;height:200px;">
+<img src="IMG_5988.JPG" alt="circuit" style="width:180px;height:200px;">
 
 
 </br></br>
