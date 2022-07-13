@@ -5,6 +5,11 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="../style.css" rel="stylesheet">
 
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
 <body>
 
 
@@ -12,9 +17,106 @@
 
 
 
-  ### Week 7: Electronic Output Devices
+  # Week 7: Electronic Output Devices
 
-  Here is an image: 
+  ##Part 1: Use Input and Output Devices Controlled by a Microcontroller Program with Class Structure
+
+  My goal for this week was to create a piezo buzzer that could play a complete octave of notes, with each note being controlled by a button. 
+
+  I created class 'button' so I could then create endless objects of with required characteristics and play all the required notes. 
+
+  Then I made a custom function to play the correct note for the corresponding button. 
+
+  Here is the code for everything together: 
+
+
+<pre><code class="language-arduino">
+          //int buttonState;
+
+
+class Button {
+ // Class Member Variables
+ // These are initialized at startup
+  int buttonPin;  // the number of the pin
+  long frequency; // the frequency 
+  int playTime; // the amount of time the buzzer will play after the button is pressed 
+
+  // These maintain the current state
+  int buzzerState;   // buzzerState used to set the buzzer
+ 
+  // Constructor - creates a Button and initializes the member variables and state
+  public:
+  Button(int pin, long freq, int time_){
+  buttonPin = pin;
+  pinMode(buttonPin, INPUT);  
+  
+  frequency = freq; 
+  playTime = time_; 
+
+  buzzerState = LOW; 
+  }
+
+  void playNoise(int buttonPin, int buzzerPin, int frequency, int playTime){ //Do I need buttonPin and frequency, as they are redundant but still get called on in this function?
+
+int buttonState = 0;
+buttonState = digitalRead(buttonPin); // read new state
+
+  if (buttonState == HIGH) {
+    Serial.println("The button is being pressed");
+     myTone(buzzerPin, frequency, playTime);  // turn on
+  }
+  else
+  if (buttonState == LOW) {
+    Serial.println("The button is unpressed");
+    myTone(buzzerPin, 0, 5);  // turn off
+  }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+void myTone(int pin, int frequency, int duration){ 
+    int startTime = millis();
+    int period = 1000000/frequency; 
+    while ((millis() - startTime) < duration){ 
+        digitalWrite(pin, LOW);
+        delayMicroseconds(period/2);
+        digitalWrite(pin, HIGH); //reversed high and low in this while-- change back if this causes problems
+        delayMicroseconds(period/2);
+    }
+}
+};
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+int buzzerPin = 10;
+int buttonState = 0; 
+
+Button button1(2, 262, 500);
+Button button2(3, 294, 500);
+Button button3(4, 330, 500);
+Button button4(5, 349, 500);
+Button button5(6, 392, 500);
+Button button6(7, 440, 500);
+Button button7(8, 493, 500);
+Button button8(9, 523, 500);
+
+void setup() {
+ Serial.begin(9600);                // initialize serial
+  pinMode(buzzerPin, OUTPUT);       // set arduino pin to output mode
+}
+
+void loop() {
+  button1.playNoise(2, 10, 262, 500);
+  button2.playNoise(3, 10, 294, 500);
+  button3.playNoise(4, 10, 330, 500);
+  button4.playNoise(5, 10, 349, 500);
+  button5.playNoise(6, 10, 392, 500);
+  button6.playNoise(7, 10, 440, 500);
+  button7.playNoise(8, 10, 493, 500);
+  button8.playNoise(9, 10, 523, 500);
+  
+}
+</code></pre> 
 
   ![image of hydrangea](./Hydrangea-PNG-Transparent-Picture.png)
 
