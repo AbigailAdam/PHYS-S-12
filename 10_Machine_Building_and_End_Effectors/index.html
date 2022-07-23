@@ -5,6 +5,11 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="../style.css" rel="stylesheet">
 
+   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
 <body>
 
 
@@ -29,6 +34,64 @@ Actualized:
 
 <img src="IMG_6223.jpeg" alt="circuitpic" style="width:570.5px;height:544.25px;">
 
+### Assembling the Mechanism: 
+
+I used carboard, mostly cut with exacto knives to build the conveyor belt. I cut the base to stabilize the stepper motor, and then the pillars and base for the far side of the belt. 
+
+However, I laser cut the circles that are stuck on the sides of the foam. Their function is to prevent the belt from escaping it's bounds and disturbing the belt's motion. Here are links to the file I used to design them, and screenshots of the sketches: 
+
+LINK HERE
+
+PICTURE HERE 
+
+The actual spinning pulleys are made of foam circles, with holes in the center. The first has a hole that attaches it to the spinning arm of the stepper motor, and the second has a small hole through the middle that I threaded armature wire through to attach it to the base.
+
+The belt is made of a thinly sliced piece of lined paper, reinforced with scotch tape to reduce friction and bolster belt's strength. 
+
+I then assembled the pieces using hot glue, and threaded the belt around the pulleys and attached it to itself using some more scotch tape. 
+
+Here are images of the final result: 
+
+PICTURES HERE 
+
+### Code: 
+
+I took the code from the class website's page on my motor driver, and really didn't make modifications and the goal of this assignment was to make a machine using a stepper motor, not programming the machine. 
+
+Also I found it useful to use the code that kept the motor's acceleration and speed random to see how my conveyer belt would deal with these changes and test it's robustness. 
+
+Here is the code:
+
+<pre><code class="language-arduino">
+
+  #include <AccelStepper.h>
+
+const int stepPin = 13;  
+const int dirPin = 12;   
+
+// Define a stepper and the pins it will use
+AccelStepper stepper(1, stepPin, dirPin); // initialise accelstepper for a two wire board
+
+void setup()
+{
+  //no setup necessary 
+}
+
+void loop()
+{
+  if (stepper.distanceToGo() == 0)
+  {
+    // Random changes to speed, position and acceleration
+    // Adding one to the random value ensures we don't get a value of 0 for speed or accelerations
+    delay(1000);
+    stepper.moveTo(rand() % 1000);
+    stepper.setMaxSpeed((rand() % 1000) + 1);
+    stepper.setAcceleration((rand() % 1000) + 1);
+  }
+  stepper.run();
+}
+
+</code></pre> 
 
 
   ![image of hydrangea](./Hydrangea-PNG-Transparent-Picture.png)
