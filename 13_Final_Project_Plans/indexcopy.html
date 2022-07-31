@@ -655,6 +655,172 @@ int chordN2;
 
 </code></pre>
 
+## Iteration 5: 
+
+<pre><code class="language-arduino">
+
+// Author: Abi Adam
+
+class Button {
+    // Class Member Variables
+    // These are initialized at startup
+    int buttonPin;  // the number of the pin
+    long frequency; // the frequency
+    int playTime; // the amount of time the buzzer will play after the button is pressed
+
+    // These maintain the current state
+    int buzzerState;   // used to set the buzzer
+
+    // Constructor - creates a Button and initializes the member variables and state
+  public:
+    Button(int pin, long freq, int time_) {
+      buttonPin = pin;
+      pinMode(buttonPin, INPUT);
+
+      frequency = freq;
+      playTime = time_;
+
+      buzzerState = LOW;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////
+
+    void playNoise(int buttonPin, int buzzerPin, int frequency, int playTime) { //function used to actually play specific notes when corresponding button is pressed
+
+      int buttonState = 0;
+      buttonState = digitalRead(buttonPin); // read new state
+
+      if (buttonState == HIGH) {
+        Serial.println("The button is being pressed");
+        Serial.print("Button ");
+        Serial.println(buttonPin);
+        myTone(buzzerPin, frequency, playTime);  // turn on 
+      }
+      else if (buttonState == LOW) {
+        Serial.println("The button is unpressed");
+        myTone(buzzerPin, 0, playTime);  // turn off
+      }
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////
+
+    void myTone(int pin, int frequency, int duration) { //subfunction that is called to play a specific frequency 
+      int startTime = millis();
+      int period = 1000000 / frequency;
+      while ((millis() - startTime) < duration) {
+        digitalWrite(pin, HIGH);
+        delayMicroseconds(period / 2);
+        digitalWrite(pin, LOW); //reversed high and low in this while-- change back if this causes problems
+        delayMicroseconds(period / 2);
+      }
+    }
+
+    
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////
+
+    void playChord(int chordN1, int chordN2) { //function that enables two notes to be played at once 
+
+      while (digitalRead(chordN1) == HIGH && digitalRead(chordN2) == HIGH) { 
+        Serial.println("Playing note 1!");
+        if (chordN1 == 1){ analogWrite(10, 262); }
+        else if (chordN1 == 2){  analogWrite(10, 294); }
+        else if (chordN1 == 3){  analogWrite(10, 330); }
+        else if (chordN1 == 4){  analogWrite(10, 349); }
+        else if (chordN1 == 5){  analogWrite(10, 392); }
+        else if (chordN1 == 6){  analogWrite(10, 493); }
+        else if (chordN1 == 8){  analogWrite(10, 523); }
+      
+
+        Serial.println("Playing note 2!");
+        if (chordN2 == 1){ tone(12, 262); }
+        else if (chordN2 == 2){  tone(12, 294); }
+        else if (chordN2 == 3){  tone(12, 330); }
+        else if (chordN2 == 4){  tone(12, 349); }
+        else if (chordN2 == 5){  tone(12, 392); }
+        else if (chordN2 == 6){  tone(12, 440); }
+        else if (chordN2 == 7){  tone(12, 493); }
+        else if (chordN2 == 8){  tone(12, 523); }
+
+        if (digitalRead(chordN1) == LOW) {
+          tone(10, 0, 5);  // silence buzzer through pin 1
+          }
+        if (digitalRead(chordN2) == LOW) {
+           tone(12, 0, 5); // silence buzzer through pin 2
+          }
+          
+        } // end of while
+
+      } //end of playChord
+
+      }; //end of Button class 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+int buzzerPin = 10;
+int buzzerPin2 = 12; 
+int buttonState = 0;
+
+//Creating objects: 
+Button button1(13, 262, 500); 
+Button button2(3, 294, 500);
+Button button3(4, 330, 500);
+Button button4(5, 349, 500);
+Button button5(6, 392, 500);
+Button button6(7, 440, 500);
+Button button7(8, 493, 500);
+Button button8(9, 523, 500);
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+void setup() {
+  Serial.begin(9600);                // initialize serial
+  pinMode(buzzerPin, OUTPUT);       // set buzzer pin to output mode
+  pinMode(buzzerPin2, OUTPUT); 
+}
+
+void loop() {
+
+  //call playNoise function for each object
+  button1.playNoise(13, 10, 262, 500);
+  button2.playNoise(3, 10, 294, 500);
+  button3.playNoise(4, 10, 330, 500);
+  button4.playNoise(5, 10, 349, 500);
+  button5.playNoise(6, 10, 392, 500);
+  button6.playNoise(7, 10, 440, 500);
+  button7.playNoise(8, 10, 493, 500);
+  button8.playNoise(9, 10, 523, 500);
+ 
+
+  //Playing 2 Notes at Once:
+int chordN1;
+int chordN2;
+
+int pushed [8] = {digitalRead(13), digitalRead(3), digitalRead(4), digitalRead(5), digitalRead(6), digitalRead(7), digitalRead(8), digitalRead(9)};//creates an array to hold the states of each button
+
+  for (int i = 1; i <= 8; i++) { //will go through and read the arrays values
+    int pushedState = digitalRead(pushed[i]); //will read read every value in the array, and store it in a variable i
+    for (int j = 1; j <= 8; j++) {
+      int compareState = digitalRead(pushed[j]); //will also read every value in the array, and store it in a new variable, j
+      if (pushedState == HIGH && compareState == HIGH && j != i) {  
+        Serial.println("Two buttons pressed NOW");
+        Serial.println(i);
+        Serial.println(j);
+        //if there are 2 buttons pressed
+        chordN1 = i;
+        chordN2 = j;
+        button1.playChord(chordN1, chordN2); //***ONLY ADDED THE BUTTON 1 THING TO DEBUG AND SEE WHAT THE ISSUE WAS
+      }
+    } // end of for 2
+  }// end of for 1
+
+}//end of void loop
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+</code></pre>
+
+
 </xmp>
 </body>
 
