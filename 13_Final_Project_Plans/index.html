@@ -129,19 +129,19 @@ Here are the links to the models, as well as screenshots of them:
 
 <img src="IMG_6313-1.jpeg" alt="circuit3pic" style="width:301.2px;height:401.9px;">
 
-   4. I laser cut the acrylic and cardboard components of thekeys and attached them to the rest of the piano using hot glue. The keys and overhang are attached to the body of the piano with hinges to allow easy access to the wiring. 
+  4. I laser cut the acrylic and cardboard components of thekeys and attached them to the rest of the piano using hot glue. The keys and overhang are attached to the body of the piano with hinges to allow easy access to the wiring. 
 
 <img src="IMG_6321.jpeg" alt="circuit4pic" style="width:301.8px;height:401.5px;">
 
-    5. I experimented with code interrupts, and followed various tutorials but sadly none of them succeded. Since there are only two interrupt pins on the arduino uno, I had to wire multiple buttons to one pin. To facilitate this I had to create a connection between all of the buttons. This scrambled the signals and made the program think that multiple buttons were being pressed constantly, and as a result played a jumble of notes instead of the ones I intended. This issue was a common thread linking all the tutorials, but nonetheless I tried three before deciding against the interrupts. Here is an image of the changes I made to the circuit, even though I had to undo them. 
+  5. I experimented with code interrupts, and followed various tutorials but sadly none of them succeded. Since there are only two interrupt pins on the arduino uno, I had to wire multiple buttons to one pin. To facilitate this I had to create a connection between all of the buttons. This scrambled the signals and made the program think that multiple buttons were being pressed constantly, and as a result played a jumble of notes instead of the ones I intended. This issue was a common thread linking all the tutorials, but nonetheless I tried three before deciding against the interrupts. Here is an image of the changes I made to the circuit, even though I had to undo them. 
 
 <img src="IMG_6353.jpeg" alt="circuit4pic" style="width:301.8px;height:401.5px;">
 
-    6. I undid the interrupts, but was still suffering with a wide variety of bugs resulting from trying to play two notes at once. So, I decided to avoid all of these by seeing if using eight different buzzers (one for each note) would solve my issues. However, even after I modified the code and triple-checked the wiring, the buzzers would not cooperate. Three of the eight worked, but the other five didn't elicit any response from their corresponding buzzer. So after experimenting and trying to debug even more failed, I changed everything back to how it was before and resolved to debug that code. Here is an image of the wiring I made for this, even though it didn't work:
+  6. I undid the interrupts, but was still suffering with a wide variety of bugs resulting from trying to play two notes at once. So, I decided to avoid all of these by seeing if using eight different buzzers (one for each note) would solve my issues. However, even after I modified the code and triple-checked the wiring, the buzzers would not cooperate. Three of the eight worked, but the other five didn't elicit any response from their corresponding buzzer. So after experimenting and trying to debug even more failed, I changed everything back to how it was before and resolved to debug that code. Here is an image of the wiring I made for this, even though it didn't work:
 
 <img src="IMG_6397.jpeg" alt="8buzzers" style="width:300.8px;height:403px;">
 
-    7. I reversed it and finalized the wiring- here is what the final product looks like:
+  7. I reversed it and finalized the wiring- here is what the final product looks like:
 <img src="IMG_6336.jpeg" alt="circuit4pic" style="width:401.6px;height:300.5px;">
 <video width="405" height="228.5" controls>
 <source src="8212fd3c-ae5e-4082-a6e9-6dd927d3b124-0-e79af379-d0a5-48cb-8328-cc192ff02cfa.mp4" type="video/mp4">
