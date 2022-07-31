@@ -137,7 +137,7 @@ Here are the links to the models, as well as screenshots of them:
 <source src="8212fd3c-ae5e-4082-a6e9-6dd927d3b124-0-e79af379-d0a5-48cb-8328-cc192ff02cfa.mp4" type="video/mp4">
 </video>
 
-5. I experimented with code interrupts, and followed various tutorials but sadly none of them succeded. Here is an image of the changes I made to the circuit, even though I had to undo them. 
+5. I experimented with code interrupts, and followed various tutorials but sadly none of them succeded. Since there are only two interrupt pins on the arduino uno, I had to wire multiple buttons to one pin. To facilitate this I had to create a connection between all of the buttons. This scrambled the signals and made the program think that multiple buttons were being pressed constantly, and as a result played a jumble of notes instead of the ones I intended. This issue was a common thread linking all the tutorials, but nonetheless I tried three before deciding against the interrupts. Here is an image of the changes I made to the circuit, even though I had to undo them. 
 
 <img src="IMG_6353.jpeg" alt="circuit4pic" style="width:301.8px;height:401.5px;">
 
