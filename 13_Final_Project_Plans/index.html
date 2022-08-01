@@ -16,17 +16,17 @@
 
   [home](../index.html) 
 
-  ## Pressure operated musical instrument
+  ## Pressure-operated musical instrument
 
   A musical instrument built using buttons to interface with the user. They would be able to play chords and notes for varying durations. The instrument would also be able to change octaves and have a display to show the user what chord/note they are playing. 
 
-  Here are some (very simple) illustrations of what I hope to create: 
+  Here are some (elementary) illustrations of what I hope to create: 
 
   <img src="IMG_3274.jpeg" alt="overhead sketches" style="width:1373px;height:242px;">
 
 ##Project Plan: 
 
-   It would utilize an Arduino and breadboarding, as well as code likely executed in the Arduino IDE (instead of matlab, as we've been using that method for coding in class). This project is basically a more complex version of a more rudimentary project I created last year that follows the same concept (a musical instrument operated based on the varied detection of light/heat from disparate sources). 
+   It would utilize an Arduino and breadboarding, as well as code likely executed in the Arduino IDE. This project is basically a more complex version of a more rudimentary project I created last year that follows a similar concept (a musical instrument operated based on the varied detection of light/heat from disparate sources). 
 
   Here is an image of the (very rudimentary) version I created for that project: 
 
@@ -91,8 +91,8 @@
 - Create CAD designs (July 10th)
 - Assemble smaller versions of the circuit and write sections of code for proof of concept 
   - make use of existing pressure sensor code and modify it, also begin with the small breadboard before scaling up 
-- Write overall psuedocode, draw circuit diagram 
-- Conbine into one large circuit, test it. 
+- Write overall pseudocode, draw a circuit diagram 
+- Combine into one large circuit, and test it. 
 - Write the code for the program, utilizing classes for the pressure sensors and integrating the piezo buzzer/speaker I choose
 - Prototype the casing 
 - Print the casing and different covers for the buttons 
@@ -111,37 +111,42 @@ Here are the links to the models, as well as screenshots of them:
 
 # Creation of the Project: 
 
-*I had to significantly adjust the plan because some aspects of it were not feasible - for instance, I removed the seven segment display and octave changer button. 
+*I had to significantly adjust the plan because some aspects of it were not feasible - for instance, I removed the seven-segment display and octave changer button. 
 
 ## Process of Construction:
 
   Here are images of the iterations of the piano thus far: 
 
-  1. One pin used for output, and there are multiple breadboard all lying in the same plane.
+  1. I wired up the initial circuit. It used one pin for the buzzer, and there are multiple breadboards all lying in the same plane.
 
   <img src="IMG_6162.jpeg" alt="circuit1pic" style="width:301.1px;height:402.1px;">
 
-  2. 2 pins for output (so it can play multiple notes at once), and the breadboards are stacked to fit dimensions of container
+  2. This version uses two pins for output (so it can play multiple notes at once), and the breadboards are stacked to fit the dimensions of the container
 
   <img src="IMG_6300.jpeg" alt="circuit2pic" style="width:301.4px;height:401.9px;">
 
-  3. I laser cut the body of the piano and assembled it using clay so I can assemble and dissasemble it at will. There are mini breadboards for the buttons, and a large one for the associated wiring. It still has the two output pins to allow for the playing of two notes at once.
+  3. I laser-cut the body of the piano and put it together it using clay so I can assemble and disassemble it at will. I placed the buttons on the mini breadboard on the upper level (where the keys will be). The mini breadboards allow for more spacing so that the keys only push their corresponding button. There is a larger breadboard on the bottom level for the wiring and buzzer.
 
   <img src="IMG_6313-1.jpeg" alt="circuit3pic" style="width:301.2px;height:401.9px;">
 
-  4. I laser cut the acrylic and cardboard components of thekeys and attached them to the rest of the piano using hot glue. The keys and overhang are attached to the body of the piano with hinges to allow easy access to the wiring. 
+  4. I laser-cut the acrylic and cardboard components of the keys and attached them to the rest of the piano using hot glue. The keys and overhang are attached to the body of the piano with hinges to allow easy access to the wiring. 
 
   <img src="IMG_6321.jpeg" alt="circuit4pic" style="width:301.8px;height:401.5px;">
 
-  5. I experimented with code interrupts, and followed various tutorials but sadly none of them succeded. Since there are only two interrupt pins on the arduino uno, I had to wire multiple buttons to one pin. To facilitate this I had to create a connection between all of the buttons. This scrambled the signals and made the program think that multiple buttons were being pressed constantly, and as a result played a jumble of notes instead of the ones I intended. This issue was a common thread linking all the tutorials, but nonetheless I tried three before deciding against the interrupts. Here is an image of the changes I made to the circuit, even though I had to undo them. 
+  5. I experimented with code interrupts, and followed various tutorials but sadly none of them succeeded. Since there are only two interrupt pins on the Arduino Uno, I had to wire multiple buttons to one interrupt pin. To facilitate this I had to create a connection between all of the buttons. This scrambled the signals and made the program think that multiple buttons were being pressed constantly, and as a result, played a jumble of notes instead of the ones I intended. I couldn't find a way around this issue in any of the tutorials I tried, and thus I decided against the interrupts. Here is an image of the changes I made to the circuit, even though I had to undo them. 
 
   <img src="IMG_6353.jpeg" alt="circuit4pic" style="width:301.8px;height:401.5px;">
 
-  6. I undid the interrupts, but was still suffering with a wide variety of bugs resulting from trying to play two notes at once. So, I decided to avoid all of these by seeing if using eight different buzzers (one for each note) would solve my issues. However, even after I modified the code and triple-checked the wiring, the buzzers would not cooperate. Three of the eight worked, but the other five didn't elicit any response from their corresponding buzzer. So after experimenting and trying to debug even more failed, I changed everything back to how it was before and resolved to debug that code. Here is an image of the wiring I made for this, even though it didn't work:
+Links to the tutorials: 
+https://create.arduino.cc/projecthub/Svizel_pritula/10-buttons-using-1-interrupt-2bd1f8
+https://www.youtube.com/watch?v=BnVyMB8orBs
+https://learn.sparkfun.com/tutorials/processor-interrupts-with-arduino/all
+
+  6. I undid the interrupts, but was still suffering with a wide variety of bugs resulting from trying to play two notes at once. So, I decided to avoid all of these by seeing if using eight different buzzers (one for each note) would solve my issues. However, even after I modified the code and triple-checked the wiring, the buzzers would not cooperate. Three of the eight worked, but the other five didn't elicit any response from their corresponding buzzer. So after experimenting and trying to debug even more failed, I changed everything back to how it was before and resolved to debug the original code. Here is an image of the wiring I made for this, even though it didn't work:
 
   <img src="IMG_6397.jpeg" alt="8buzzers" style="width:300.8px;height:403px;">
 
-  7. I reversed it and finalized the wiring- here is what the final product looks like:
+  7. I reversed it and finalized the wiring. I even succeeded in getting rid of the most egregious bugs (that the two Cs wouldn’t play chords and that E wouldn’t stop playing once it was pushed). The final code can be found in the next section. Here is what the final product looks like:
 </br></br>
   <img src="IMG_6336.jpeg" alt="circuit4pic" style="width:401.6px;height:300.5px;">
   <video width="405" height="228.5" controls>
@@ -219,7 +224,7 @@ void playChord(int chordN1, int chordN2){
     Serial.println("Playing note 1!");
      Serial.println(chordN1);
       if (chordN1 == 1){ analogWrite(10, 262); }
-      else if (chordN1 == 2){  analogWrite(10, 294); } //CHANGED FROM 3
+      else if (chordN1 == 2){  analogWrite(10, 294); }
       else if (chordN1 == 3){  analogWrite(10, 330); }
       else if (chordN1 == 4){  analogWrite(10, 349); }
       else if (chordN1 == 5){  analogWrite(10, 392); }
@@ -231,7 +236,7 @@ void playChord(int chordN1, int chordN2){
 Serial.println("Playing note 2!");
 Serial.println(chordN2);
       if (chordN2 == 1){ tone(12, 262); }
-      else if (chordN2 == 2){  tone(12, 294); } //CHANGED FROM 3
+      else if (chordN2 == 2){  tone(12, 294); } 
       else if (chordN2 == 3){  tone(12, 330); }
       else if (chordN2 == 4){  tone(12, 349); }
       else if (chordN2 == 5){  tone(12, 392); }
@@ -258,7 +263,7 @@ int buzzerPin2 = 12;
 int buttonState = 0; 
 
 Button button1(13, 262, 500);
-Button button2(2, 294, 500); //CHANGED FROM 3
+Button button2(2, 294, 500);
 Button button3(4, 330, 500);
 Button button4(5, 349, 500);
 Button button5(6, 392, 500);
@@ -274,7 +279,7 @@ void setup() {
 
 void loop() {
   button1.playNoise(13, 10, 262, 500);
-  button2.playNoise(2, 10, 294, 500); //CHANGED FROM 3
+  button2.playNoise(2, 10, 294, 500); 
   button3.playNoise(4, 10, 330, 500);
   button4.playNoise(5, 10, 349, 500);
   button5.playNoise(6, 10, 392, 500);
@@ -318,6 +323,10 @@ pushed[7] = digitalRead(9);
 
 </code></pre> 
 
+##Challenges: 
+
+I faced many challenges while making this project, chief amongst them being the effort to get the Arduino to play two notes at once. I spent tireless hours investigating and trying to find a solution before I found the one utilized for this project. At the prompting of some frustratingly vague online tutorials, I looked into adding the sine waves corresponding to each frequency and then outputting the result to the buzzer, but that ended up seeming incredibly convoluted when compared to the relatively simple solution that I found in the Arduino forum (see [this link](https://arduino.stackexchange.com/questions/32926/multiple-tones-with-one-piezo-buzzer).) for the relevant page). I also investigated playing the notes at shorter durations and alternating between them faster than the human ear can perceive so they would appear to blend, but that was also ineffective. 
+
 ## Files and Relevant Tutorials:
 
 Laser Cutting File: </br>
@@ -337,3 +346,4 @@ Playing Two Notes at Once: </br>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
 
 </html>
+
